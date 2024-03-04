@@ -27,10 +27,11 @@ def merge_multiple_dataframe():
             read_pandas = pd.read_csv(os.path.join(input_folder_path,present_file))
             pd_list.append(read_pandas)
     concatenated_pd = pd.concat(pd_list)
+    print(os.path.isdir(output_folder_path))
     if not os.path.isdir(output_folder_path):
         os.mkdir(output_folder_path)
 
-    concatenated_pd.drop_duplicates().to_csv(os.path.join(output_folder_path,"finaldata.csv" ))
+    concatenated_pd.drop_duplicates().to_csv(os.path.join(output_folder_path,"finaldata.csv" ), index=False)
 
     with open('ingestedfiles.txt', 'w') as f:
         f.write(str(files_read))
